@@ -154,7 +154,7 @@
       <div class="item">
         <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/08/02070057/Resep-Mie-Pedas-Level-Ala-Restoran-yang-Bisa-Dibuat-di-Rumah.jpg" alt="Mie Level">
         <div class="item-content">
-          <h3>Mie Level - Rp12.500</h3>
+          <h3>Mie Level (+ Rp1.500/Level) - Rp12.500</h3>
           <button onclick="addToCart('Mie Level')">Tambah</button>
         </div>
       </div>
@@ -162,7 +162,7 @@
       <div class="item">
         <img src="https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p3/93/2025/03/05/B190577-Cover-resep-mie-kuah-3374440890.jpg" alt="Mie Rebus">
         <div class="item-content">
-          <h3>Mie Rebus - Rp13.500</h3>
+          <h3>Mie Rebus (+ Telur/Butir) - Rp7.000 (+ Rp2000)</h3>
           <button onclick="addToCart('Mie Rebus')">Tambah</button>
         </div>
       </div>
@@ -178,7 +178,7 @@
       <div class="item">
         <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/14031149/X-Resep-Roti-Bakar-Berbagai-Isi-Cocok-untuk-Pengidap-Diabetes.jpg" alt="Roti Bakar">
         <div class="item-content">
-          <h3>Roti Bakar - Rp12.000</h3>
+          <h3>Roti Bakar ( Bisa Request Rasa ) - Rp12.000</h3>
           <button onclick="addToCart('Roti Bakar')">Tambah</button>
         </div>
       </div>
@@ -233,7 +233,7 @@
     const items = {
       "Nasi Ayam Geprek": 14000,
       "Mie Level": 12500,
-      "Mie Rebus": 13500,
+      "Mie Rebus (+ Telur/Butir)": 13500 (+Rp2.000),
       "Nasi Padang": 12000,
       "Roti Bakar": 12000,
       "Es Teh": 4000,
@@ -245,7 +245,7 @@
 
     function addToCart(item) {
       if (!isOrderTime()) {
-        alert("Pemesanan hanya bisa dilakukan antara pukul 13:00 - 15:00 WIB.");
+        alert("Pemesanan hanya bisa dilakukan antara pukul 11:00 - 15:00 WIB.");
         return;
       }
 
