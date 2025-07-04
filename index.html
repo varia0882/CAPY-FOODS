@@ -214,12 +214,11 @@
       <ul class="order-list" id="orderList"></ul>
 
       <div id="driver-selection">
-        <h3>Kirim ke Driver:</h3>
-        <button onclick="sendToDriver(0)">Driver 1</button>
-        <button onclick="sendToDriver(1)">Driver 2</button>
-        <button onclick="sendToDriver(2)">Driver 3</button>
-        <button onclick="sendToDriver(3)">Driver 4</button>
-      </div>
+      <div id="driver-selection">
+  <h3>Kirim Pesanan:</h3>
+  <button onclick="sendToRandomDriver()">Kirim ke Driver</button>
+</div>
+
     </div>
   </div>
 
@@ -285,11 +284,30 @@
       orderList.appendChild(totalLi);
     }
 
-    function sendToDriver(index) {
-      if (Object.keys(cart).length === 0) {
-        alert("Pesanan masih kosong!");
-        return;
-      }
+  function sendToRandomDriver() {
+  if (Object.keys(cart).length === 0) {
+    alert("Pesanan masih kosong!");
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * drivers.length);
+  const driverNumber = drivers[randomIndex];
+
+  let pesan = "Halo, saya ingin memesan:\n\n";
+  let total = 0;
+
+  Object.keys(cart).forEach((item, i) => {
+    const qty = cart[item];
+    const harga = items[item] * qty;
+    total += harga;
+    pesan += `${i + 1}. ${item} x ${qty} = Rp${harga.toLocaleString()}\n`;
+  });
+
+  pesan += `\nTotal: Rp${total.toLocaleString()}`;
+  const url = `https://wa.me/${driverNumber}?text=${encodeURIComponent(pesan)}`;
+  window.open(url, "_blank");
+}
+
 
       let pesan = "Halo, saya ingin memesan:\n\n";
       let total = 0;
