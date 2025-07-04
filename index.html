@@ -126,6 +126,7 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 16px;
     }
 
     #driver-selection button:hover {
@@ -143,7 +144,6 @@
 
   <div class="container">
     <div class="menu">
-      <!-- Menu Items -->
       <div class="item">
         <img src="https://www.masakapahariini.com/wp-content/uploads/2023/03/shutterstock_1949306203-500x300.jpg" alt="Nasi Ayam Geprek">
         <div class="item-content">
@@ -179,7 +179,7 @@
       <div class="item">
         <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/14031149/X-Resep-Roti-Bakar-Berbagai-Isi-Cocok-untuk-Pengidap-Diabetes.jpg" alt="Roti Bakar">
         <div class="item-content">
-          <h3>Roti Bakar ( Bisa Request Rasa ) - Rp12.000</h3>
+          <h3>Roti Bakar - Rp12.000</h3>
           <button onclick="addToCart('Roti Bakar')">Tambah</button>
         </div>
       </div>
@@ -214,11 +214,9 @@
       <ul class="order-list" id="orderList"></ul>
 
       <div id="driver-selection">
-      <div id="driver-selection">
-  <h3>Kirim Pesanan:</h3>
-  <button onclick="sendToRandomDriver()">Kirim ke Driver</button>
-</div>
-
+        <h3>Kirim Pesanan:</h3>
+        <button onclick="sendToRandomDriver()">Kirim ke Driver</button>
+      </div>
     </div>
   </div>
 
@@ -284,29 +282,14 @@
       orderList.appendChild(totalLi);
     }
 
-  function sendToRandomDriver() {
-  if (Object.keys(cart).length === 0) {
-    alert("Pesanan masih kosong!");
-    return;
-  }
+    function sendToRandomDriver() {
+      if (Object.keys(cart).length === 0) {
+        alert("Pesanan masih kosong!");
+        return;
+      }
 
-  const randomIndex = Math.floor(Math.random() * drivers.length);
-  const driverNumber = drivers[randomIndex];
-
-  let pesan = "Halo, saya ingin memesan:\n\n";
-  let total = 0;
-
-  Object.keys(cart).forEach((item, i) => {
-    const qty = cart[item];
-    const harga = items[item] * qty;
-    total += harga;
-    pesan += `${i + 1}. ${item} x ${qty} = Rp${harga.toLocaleString()}\n`;
-  });
-
-  pesan += `\nTotal: Rp${total.toLocaleString()}`;
-  const url = `https://wa.me/${driverNumber}?text=${encodeURIComponent(pesan)}`;
-  window.open(url, "_blank");
-}
+      const randomIndex = Math.floor(Math.random() * drivers.length);
+      const driverNumber = drivers[randomIndex];
 
       let pesan = "Halo, saya ingin memesan:\n\n";
       let total = 0;
@@ -319,7 +302,7 @@
       });
 
       pesan += `\nTotal: Rp${total.toLocaleString()}`;
-      const url = `https://wa.me/${drivers[index]}?text=${encodeURIComponent(pesan)}`;
+      const url = `https://wa.me/${driverNumber}?text=${encodeURIComponent(pesan)}`;
       window.open(url, "_blank");
     }
   </script>
