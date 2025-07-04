@@ -233,7 +233,7 @@
     const items = {
       "Nasi Ayam Geprek": 14000,
       "Mie Level": 12500,
-      "Mie Rebus (+ Telur/Butir)": 13500 (+Rp2.000),
+      "Mie Rebus (+ Telur/Butir)": 13500 (+2.000),
       "Nasi Padang": 12000,
       "Roti Bakar": 12000,
       "Es Teh": 4000,
@@ -242,6 +242,14 @@
     };
 
     const cart = {};
+    
+function isOrderTime() {
+  const now = new Date();
+  const jam = now.getHours();
+  const menit = now.getMinutes();
+  const totalMenit = jam * 60 + menit;
+  return totalMenit >= 09 * 60 && totalMenit <= 15 * 60;
+}
 
     function addToCart(item) {
       if (!isOrderTime()) {
