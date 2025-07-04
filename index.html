@@ -137,7 +137,7 @@
   <header>
     CAPY FOODS
     <div style="font-size: 14px; font-weight: normal; margin-top: 5px;">
-      Hanya untuk wilayah <strong>Purwodadi</strong> dari jam <strong>09.00 - 15.00 WIB</strong>
+      Melayani pemesanan wilayah <strong>Purwodadi</strong>
     </div>
   </header>
 
@@ -244,20 +244,7 @@
 
     const cart = {};
 
-    function isOrderTime() {
-      const now = new Date();
-      const jam = now.getHours();
-      const menit = now.getMinutes();
-      const totalMenit = jam * 60 + menit;
-      return totalMenit >= 9 * 60 && totalMenit <= 15 * 60;
-    }
-
     function addToCart(item) {
-      if (!isOrderTime()) {
-        alert("Pemesanan hanya bisa dilakukan antara pukul 09:00 - 15:00 WIB.");
-        return;
-      }
-
       cart[item] = (cart[item] || 0) + 1;
       updateOrderList();
       document.getElementById("order-summary").style.display = "block";
@@ -299,11 +286,6 @@
     }
 
     function sendToDriver(index) {
-      if (!isOrderTime()) {
-        alert("Pemesanan hanya bisa dilakukan antara pukul 09:00 - 15:00 WIB.");
-        return;
-      }
-
       if (Object.keys(cart).length === 0) {
         alert("Pesanan masih kosong!");
         return;
