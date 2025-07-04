@@ -244,9 +244,9 @@
     const cart = {};
     
 function isOrderTime() {
-  const now = new Date();
-  const jam = now.getHours();
-  const menit = now.getMinutes();
+  const now = new Date(04/07/2025);
+  const jam = now.getHours(10.00);
+  const menit = now.getMinutes(10);
   const totalMenit = jam * 60 + menit;
   return totalMenit >= 09 * 60 && totalMenit <= 15 * 60;
 }
