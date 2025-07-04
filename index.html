@@ -25,7 +25,7 @@
 
     .container {
       padding: 20px;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: auto;
     }
 
@@ -113,6 +113,15 @@
       background-color: #ccc;
     }
 
+    textarea {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
     #driver-selection {
       margin-top: 20px;
       text-align: center;
@@ -138,42 +147,48 @@
     }
 
     #chatMessages {
-      height: 200px;
+      height: 300px;
       overflow-y: auto;
-      background: #fff;
-      padding: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
+      padding: 10px;
+      background: #fefefe;
       margin-bottom: 10px;
     }
 
+    .message {
+      margin-bottom: 12px;
+    }
+
+    .user {
+      color: #333;
+    }
+
+    .driver {
+      color: #006400;
+    }
+
     #chatInput {
-      width: 80%;
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    #chatbox button {
-      padding: 9px 12px;
-      background-color: #00b14f;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    #chatbox button:hover {
-      background-color: #009944;
-    }
-
-    textarea {
-      width: 100%;
-      margin-top: 15px;
+      width: 75%;
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 14px;
+    }
+
+    #sendBtn {
+      padding: 10px 16px;
+      background-color: #00b14f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    #sendBtn:hover {
+      background-color: #009944;
     }
   </style>
 </head>
@@ -186,9 +201,9 @@
   </header>
 
   <div class="container">
+    <!-- MENU MAKANAN -->
     <div class="menu">
-      <!-- Item makanan -->
-      <div class="item">
+     <div class="item">
         <img src="https://www.masakapahariini.com/wp-content/uploads/2023/03/shutterstock_1949306203-500x300.jpg" alt="Nasi Ayam Geprek">
         <div class="item-content">
           <h3>Nasi Ayam Geprek - Rp14.000</h3>
@@ -261,6 +276,7 @@
       </div>
     </div>
 
+    <!-- ORDER SUMMARY -->
     <div id="order-summary" style="display:none;">
       <h2>Pesanan Kamu:</h2>
       <ul class="order-list" id="orderList"></ul>
@@ -272,11 +288,12 @@
         <button onclick="sendToRandomDriver()">Kirim ke Driver</button>
       </div>
 
+      <!-- CHAT SIMULASI -->
       <div id="chatbox">
-        <h3>Pesan Antar Driver dan Pemesan</h3>
+        <h3>💬 Pesan Chat dengan Driver</h3>
         <div id="chatMessages"></div>
         <input type="text" id="chatInput" placeholder="Ketik pesan..." />
-        <button onclick="sendChatMessage()">Kirim</button>
+        <button id="sendBtn" onclick="sendChatMessage()">Kirim</button>
       </div>
     </div>
   </div>
@@ -369,8 +386,7 @@
       }
 
       pesan += `\n\nTotal: Rp${total.toLocaleString()}`;
-      const url = `https://wa.me/${driverNumber}?text=${encodeURIComponent(pesan)}`;
-      window.open(url, "_blank");
+      alert("Pesanan berhasil dikirim ke driver secara simulasi.\n\n" + pesan);
     }
 
     function sendChatMessage() {
@@ -381,21 +397,28 @@
       const chatBox = document.getElementById("chatMessages");
 
       const userMsg = document.createElement("div");
-      userMsg.textContent = "Pemesan: " + message;
-      userMsg.style.marginBottom = "8px";
-      userMsg.style.color = "#333";
+      userMsg.classList.add("message", "user");
+      userMsg.textContent = "🧍 Pemesan: " + message;
       chatBox.appendChild(userMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
 
       input.value = "";
 
+      const replies = [
+        "📦 Driver: Oke, pesanan kamu sedang disiapkan.",
+        "📦 Driver: Dalam perjalanan ya, harap tunggu.",
+        "📦 Driver: Sudah sampai di depan rumah kak.",
+        "📦 Driver: Pesanan agak ramai, mohon bersabar.",
+        "📦 Driver: Terima kasih, semoga suka makanannya!"
+      ];
+
       setTimeout(() => {
         const driverMsg = document.createElement("div");
-        driverMsg.textContent = "Driver: Pesan kamu sudah diterima!";
-        driverMsg.style.marginBottom = "8px";
-        driverMsg.style.color = "#006400";
+        driverMsg.classList.add("message", "driver");
+        driverMsg.textContent = replies[Math.floor(Math.random() * replies.length)];
         chatBox.appendChild(driverMsg);
         chatBox.scrollTop = chatBox.scrollHeight;
-      }, 1000);
+      }, 1500);
     }
   </script>
 </body>
